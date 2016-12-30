@@ -1,0 +1,9 @@
+  'resource':
+    'prefix': '{{.Name}}'
+    'body': """
+      resource "{{.Name}}" "${1}" {
+{{ $i := 1 }}{{range $k, $v := .Arguments}}      	{{$k}} = "${{increment $i}}" {{ if $v.Optional }}// optional{{end}}{{ if not $v.Optional }}// required{{end}}
+{{ end }}
+      }
+    """
+
